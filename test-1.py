@@ -1,20 +1,9 @@
 #imports
-import _sqlite3
+import sqlite3
 
-#variables
-DATABASE = "student.db"
-
-
-
-#function
-
-
-
-
-#main code
-db = _sqlite3.connect(DATABASE)
+db = sqlite3.connect ("student.db")
 cursor = db.cursor()
-sql = "SELECT * FROM student;"
+sql = "SELECT * FROM grade"
 cursor.execute(sql)
 results = cursor.fetchall()
 print(results)
