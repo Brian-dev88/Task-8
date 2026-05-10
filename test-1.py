@@ -1,10 +1,19 @@
-#imports
 import sqlite3
 
-db = sqlite3.connect ("student.db")
+db = sqlite3.connect("student.db")
 cursor = db.cursor()
-sql = "SELECT * FROM grade"
-cursor.execute(sql)
+
+student_name = input("Enter the name of the student: ")
+
+sql = "SELECT * FROM student WHERE student_name = ?"
+cursor.execute(sql, (student_name,))
+
 results = cursor.fetchall()
-print(results)
-db.close
+
+if results:
+    for row in results:
+        print(row)
+else:
+    print("No records found.")
+
+db.close()
