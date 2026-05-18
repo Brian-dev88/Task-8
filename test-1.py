@@ -3,10 +3,55 @@ import sqlite3
 db = sqlite3.connect("student (1).db")
 cursor = db.cursor()
 
-grade = input("Enter the name of the student: ")
+print('1. Search by student name')
+print('2. Search by student ID')
+print('3. Show all students and grade score')
 
-sql = "SELECT * FROM student, grade WHERE student_name = ? AND student.student_id = grade.student_id"
-cursor.execute(sql, (grade,))
+choice = input("Enter Option (1/2/3): ")
+
+while True:
+    try:
+        if choice == "1":
+            grade = input("Enter the name of the student: ")
+            sql = "SELECT * FROM student, grade WHERE student_name = ? AND student.student_id = grade.student_id"
+            cursor.execute(sql, (grade,))
+
+            results = cursor.fetchall()
+            if results:
+                print(f"{'student_id':<15}{'student_name':<25}{'grade_score':<25}")
+                print("-" * 50)
+
+            for row in results:
+                print(f"{row[0]:<15}{row[1]:<25}{row[5]:<25}")
+            else:
+                print("No records found.")
+            break
+
+        elif choice == "2":
+            value = input('Enter student ID: ')
+            sql = "SELECT student.student, student.student_name, grade.grade_score FROM student"
+            cursor.execute(sql, (grade,))
+
+            results = cursor.fetchall()
+            if results:
+                print(f"{'student_id':<15}{'student_name':<25}{'grade_score':<25}")
+                print("-" * 50)
+
+            for row in results:
+                print(f"{row[0]:<15}{row[1]:<25}{row[5]:<25}")
+            else:
+                print("No records found.")
+            break
+
+        elif choice == "3":
+
+    except ValueError:
+        print("Invalid input. Please try again.")
+
+
+
+
+
 
 results = cursor.fetchall()
 
