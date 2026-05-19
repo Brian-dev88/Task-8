@@ -44,12 +44,11 @@ while True:
             break
 
         elif choice == "3":
+            sql = "SELECT student.student_id, student.student_name, grade.grade_score FROM student"
+            
 
     except ValueError:
         print("Invalid input. Please try again.")
-
-
-
 
 
 
