@@ -28,9 +28,9 @@ while True:
             break
 
         elif choice == "2":
-            value = input('Enter student ID: ')
-            sql = "SELECT student.student, student.student_name, grade.grade_score FROM grade"
-            cursor.execute(sql, (grade,))
+            value = int(input('Enter student ID: '))
+            sql = "SELECT grade.student_id, student.student_name, grade.grade_score FROM grade, student WHERE grade.student_id = student.student_id AND grade.student_id = ?"
+            cursor.execute(sql, (value,))
 
             results = cursor.fetchall()
             if results:
@@ -38,29 +38,25 @@ while True:
                 print("-" * 50)
 
             for row in results:
-                print(f"{row[0]:<15}{row[1]:<25}{row[5]:<25}")
+                print(f"{row[0]:<15}{row[1]:<25}{row[2]:<25}")
             else:
                 print("No further records found.")
             break
 
         elif choice == "3":
-            sql = "SELECT student.student_id, student.student_name, grade.grade_score FROM grade"
+            sql = "SELECT grade.student_id, student.student_name, grade.grade_score FROM grade, student WHERE grade.student_id = student.student_id "
             cursor.execute(sql)
+            results = cursor.fetchall()
 
             if results:
                 print(f"{'student_id':<15}{'student_name':<25}{'grade_score':<25}")
                 print("-" * 50)
 
             for row in results:
-                print(f"{row[0]:<15}{row[1]:<25}{row[5]:<25}")
+                print(f"{row[0]:<15}{row[1]:<25}{row[2]:<25}")
             else:
                 print("No further records found.")
             break
 
-
-
-
     except ValueError:
         print("Invalid input. Please try again.")
-
-
