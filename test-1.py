@@ -10,8 +10,10 @@ while True:
         print('2. Search by student ID')
         print('3. Show all students that got A- or above')
         print('4. Show all students and grade score')
+        print('5. Exit the app')
 
-        choice = input("Enter Option (1/2/3/4): ")
+
+        choice = input("Enter Option (1/2/3/4/5): ")
 
         if choice == "1":
             grade = input("Enter the name of the student: ")
@@ -71,7 +73,16 @@ while True:
             for row in results:
                 print(f"{row[0]:<15}{row[1]:<25}{row[2]:<25}")
             else:
-                print("No further records found.")
+                print("No further records found.\n")
+        
+        elif choice == "5":
             break
+
+        else:
+            print("Enter a number between 1 and 5.")
+
+
     except ValueError:
         print("Invalid input. Please try again.")
+    
+print("Thanks for using!")
